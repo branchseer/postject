@@ -150,9 +150,8 @@ static const void* postject_find_resource(
       }
 
       ElfW(Nhdr)* note = (ElfW(Nhdr)*)(uintptr_t)pos;
-      if (note->n_namesz != 0 && note->n_descsz != 0 &&
-          strncmp((char*)(pos + sizeof(ElfW(Nhdr))), (char*)name,
-                  sizeof(name)) == 0) {
+      if (note->n_namesz != 0 && strncmp((char*)(pos + sizeof(ElfW(Nhdr))),
+                                         (char*)name, sizeof(name)) == 0) {
         *size = note->n_descsz;
         // advance past note header and aligned name
         // to get to description data
